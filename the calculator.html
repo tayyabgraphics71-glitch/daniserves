@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merit Calculator Pakistan – Aggregate for NUST, FAST, COMSATS, UET, MDCAT &amp; More</title>
+<meta name="description" content="Free merit and aggregate calculator for top Pakistani universities. Enter your Matric, FSc and entry test marks and compare your aggregate for NUST, FAST, COMSATS, GIKI, UET, NED, MDCAT and more.">
+<meta name="keywords" content="merit calculator, aggregate calculator, NUST merit, FAST merit, MDCAT aggregate, UET ECAT aggregate, Pakistan universities">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--card:#fff;--ink:#12201b;--mute:#5b6b65;--line:#dbe3df;--brand:#0c5a4a;--brand2:#e9f3ef;--gold:#c8951b;--bad:#b3261e;--r:14px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1714;--card:#16221e;--ink:#e8f1ed;--mute:#9db0a8;--line:#2a3a34;--brand:#3fbf9f;--brand2:#18302a;--gold:#e0b04a;--bad:#ff8a80}}
+:root[data-theme=dark]{--bg:#0e1714;--card:#16221e;--ink:#e8f1ed;--mute:#9db0a8;--line:#2a3a34;--brand:#3fbf9f;--brand2:#18302a;--gold:#e0b04a;--bad:#ff8a80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Source Sans 3",system-ui,Segoe UI,Arial,sans-serif}
+h1,h2,h3,.num{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;letter-spacing:-.02em;line-height:1.15;margin:0}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--card)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:800 20px "Bricolage Grotesque",sans-serif;display:flex;gap:10px;align-items:center}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--brand);display:grid;place-items:center;color:#fff;font-style:normal;font-size:15px}
+.tbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit;font-size:14px}
+.hero{padding:44px 0 26px}
+.hero h1{font-size:clamp(30px,5vw,50px);max-width:760px}
+.hero p{color:var(--mute);max-width:640px;margin:14px 0 0;font-size:18px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card h2{font-size:21px;margin-bottom:4px}
+.sub{color:var(--mute);font-size:14px;margin:0 0 16px}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 5px}
+select,input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.sec{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.sec h3{font-size:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+.sec h3 small{font:500 13px "Source Sans 3",sans-serif;color:var(--mute)}
+.wts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.res{position:sticky;top:16px;text-align:center}
+.ring{position:relative;width:210px;height:210px;margin:6px auto 10px}
+.ring svg{transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:grid;place-content:center}
+.ring .num{font-size:50px;font-weight:800;color:var(--brand)}
+.ring .l{font-size:13px;color:var(--mute)}
+.bd{display:grid;gap:8px;text-align:left;margin-top:14px}
+.bd div{display:flex;justify-content:space-between;font-size:15px;padding:8px 12px;background:var(--brand2);border-radius:8px}
+.msg{font-size:14px;color:var(--mute);margin-top:12px}
+.err{color:var(--bad);font-weight:600}
+.tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:12px}
+.tools input{max-width:260px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--mute);font-weight:600;cursor:pointer;white-space:nowrap}
+tr.pick td{background:var(--brand2)}
+tbody tr{cursor:pointer}
+.sc{font-weight:700;font-family:"Bricolage Grotesque",sans-serif;font-size:17px}
+.bar{height:6px;background:var(--line);border-radius:4px;min-width:70px}
+.bar b{display:block;height:100%;background:var(--brand);border-radius:4px}
+.tw{overflow-x:auto}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--mute);white-space:nowrap}
+section{margin-top:26px}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--mute);margin:8px 0 0}
+footer{margin:40px 0 30px;color:var(--mute);font-size:14px}
+.note{background:var(--brand2);border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;font-size:14px;margin-top:14px}
+@media(prefers-reduced-motion:no-preference){.ring circle.v{transition:stroke-dashoffset .6s ease}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap nav">
+<div class="logo"><i>M</i>MeritCalc PK</div>
+<button class="tbtn" id="theme" type="button" aria-label="Toggle dark mode">Dark mode</button>
+</div></header>
+
+<main class="wrap">
+<div class="hero">
+<h1>Calculate your merit for Pakistan's top universities</h1>
+<p>Enter your Matric, FSc and entry test marks. See your aggregate for NUST, FAST, COMSATS, UET, MDCAT and more, side by side.</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h2>Your marks</h2>
+<p class="sub">Results update as you type.</p>
+<label for="uni">University / test</label>
+<select id="uni"></select>
+
+<div class="sec"><h3>Matric (SSC) <small>Class 9 + 10</small></h3>
+<div class="row"><div><label for="mo">Obtained</label><input id="mo" type="number" min="0" inputmode="decimal" value="950"></div>
+<div><label for="mt">Total</label><input id="mt" type="number" min="1" inputmode="decimal" value="1100"></div></div></div>
+
+<div class="sec"><h3>FSc / Intermediate (HSSC) <small>Part 1 + 2</small></h3>
+<div class="row"><div><label for="io">Obtained</label><input id="io" type="number" min="0" inputmode="decimal" value="920"></div>
+<div><label for="it">Total</label><input id="it" type="number" min="1" inputmode="decimal" value="1100"></div></div></div>
+
+<div class="sec"><h3>Entry test <small id="tn">NET / ECAT / MDCAT / NTS</small></h3>
+<div class="row"><div><label for="to">Obtained</label><input id="to" type="number" min="0" inputmode="decimal" value="140"></div>
+<div><label for="tt">Total</label><input id="tt" type="number" min="1" inputmode="decimal" value="200"></div></div></div>
+
+<div class="sec"><h3>Merit weights (%) <small>Editable</small></h3>
+<div class="wts"><div><label for="wm">Matric</label><input id="wm" type="number" min="0" max="100" value="10"></div>
+<div><label for="wi">FSc</label><input id="wi" type="number" min="0" max="100" value="40"></div>
+<div><label for="wt">Test</label><input id="wt" type="number" min="0" max="100" value="50"></div></div>
+<div class="note" id="fnote"></div></div>
+</div>
+
+<aside class="card res" aria-live="polite">
+<h2 id="rname">Your aggregate</h2>
+<p class="sub" id="rsub"></p>
+<div class="ring">
+<svg width="210" height="210" viewBox="0 0 210 210"><circle cx="105" cy="105" r="92" fill="none" stroke="var(--line)" stroke-width="14"/>
+<circle class="v" id="arc" cx="105" cy="105" r="92" fill="none" stroke="var(--brand)" stroke-width="14" stroke-linecap="round" stroke-dasharray="578" stroke-dashoffset="578"/></svg>
+<div class="c"><span class="num" id="agg">0.00</span><span class="l">out of 100</span></div></div>
+<div class="bd" id="bd"></div>
+<p class="msg" id="msg"></p>
+</aside>
+</div>
+
+<section class="card">
+<div class="tools"><div><h2>Compare all universities</h2><p class="sub" style="margin:0">Your marks applied to each university's usual formula. Click a row to select it.</p></div>
+<input id="q" type="search" placeholder="Search university or city" aria-label="Search universities"></div>
+<div class="tw"><table><thead><tr><th data-k="name">University</th><th data-k="city">City</th><th data-k="kind">Field</th><th>Formula (M / F / T)</th><th data-k="score">Your aggregate</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="msg">The test percentage uses the entry test marks you entered above for every row. Real tests differ in total marks, so pick each university's own test to check.</p>
+</section>
+
+<section class="card">
+<h2>Frequently asked questions</h2>
+<details><summary>What is an aggregate?</summary><p>An aggregate is your weighted percentage. Each university gives a fixed share to Matric, FSc and its entry test, and adds them up to rank applicants.</p></details>
+<details><summary>Why are weights editable?</summary><p>Universities change formulas by year, program and campus. If your prospectus shows different weights, type them in and the result updates.</p></details>
+<details><summary>Does a higher aggregate guarantee admission?</summary><p>No. Admission depends on the closing merit of your chosen program and seats in that year. Compare your aggregate with last year's closing merit on the university's website.</p></details>
+</section>
+
+<footer>
+<div class="note">Formulas are approximate and may change every admission cycle. Always confirm weights and closing merit in the official prospectus before applying. This tool is not affiliated with any university.</div>
+<p>&copy; <span id="yr"></span> MeritCalc PK</p>
+</footer>
+</main>
+
+<script>
+const U=[
+{id:"nust",name:"NUST",city:"Islamabad",kind:"Engineering / Computing",m:10,i:15,t:75,tn:"NUST NET",tt:200},
+{id:"fast",name:"FAST-NUCES",city:"Lahore / Karachi / Isb.",kind:"Computing / Business",m:10,i:40,t:50,tn:"FAST test",tt:100},
+{id:"comsats",name:"COMSATS University",city:"Islamabad + campuses",kind:"General",m:10,i:40,t:50,tn:"NTS / CUI test",tt:100},
+{id:"giki",name:"GIKI",city:"Topi, KP",kind:"Engineering",m:0,i:15,t:85,tn:"GIKI test",tt:100},
+{id:"uet",name:"UET Lahore",city:"Lahore",kind:"Engineering",m:10,i:40,t:50,tn:"ECAT",tt:400},
+{id:"ned",name:"NED University",city:"Karachi",kind:"Engineering",m:10,i:40,t:50,tn:"NED test",tt:100},
+{id:"mdcat",name:"MBBS / BDS (UHS MDCAT)",city:"Punjab",kind:"Medical",m:10,i:40,t:50,tn:"MDCAT",tt:200},
+{id:"pu",name:"University of the Punjab",city:"Lahore",kind:"General",m:10,i:90,t:0,tn:"No test",tt:100},
+{id:"qau",name:"Quaid-i-Azam University",city:"Islamabad",kind:"General",m:10,i:40,t:50,tn:"QAU test",tt:100},
+{id:"air",name:"Air University",city:"Islamabad",kind:"Engineering / Computing",m:10,i:40,t:50,tn:"AU test",tt:100},
+{id:"custom",name:"Custom formula",city:"-",kind:"Any",m:10,i:40,t:50,tn:"Any test",tt:100,hide:1}
+];
+const $=id=>document.getElementById(id);
+const sel=$("uni");
+U.forEach(u=>sel.add(new Option(u.name,u.id)));
+const num=id=>parseFloat($(id).value)||0;
+const pct=(o,t)=>t>0?Math.min(100,Math.max(0,o/t*100)):0;
+const f2=x=>x.toFixed(2);
+let sortK="score",sortAsc=false;
+
+function agg(m,i,t,w){const s=w[0]+w[1]+w[2];return s>0?(m*w[0]+i*w[1]+t*w[2])/s:0}
+function cur(){return U.find(u=>u.id===sel.value)}
+
+function applyUni(){
+ const u=cur();
+ $("wm").value=u.m;$("wi").value=u.i;$("wt").value=u.t;
+ $("tn").textContent=u.tn;
+ if(u.id!=="custom"&&!$("tt").dataset.touched)$("tt").value=u.tt;
+ if(u.id!=="custom")$("tt").value=u.tt;
+ render();
+}
+function render(){
+ const u=cur(),m=pct(num("mo"),num("mt")),i=pct(num("io"),num("it")),t=pct(num("to"),num("tt"));
+ const w=[num("wm"),num("wi"),num("wt")],sum=w[0]+w[1]+w[2],a=agg(m,i,t,w);
+ $("agg").textContent=f2(a);
+ $("arc").style.strokeDashoffset=578-578*a/100;
+ $("rname").textContent=u.name;
+ $("rsub").textContent=u.kind;
+ $("bd").innerHTML=`<div><span>Matric ${f2(m)}% x ${w[0]}</span><b>${f2(m*w[0]/100)}</b></div>
+ <div><span>FSc ${f2(i)}% x ${w[1]}</span><b>${f2(i*w[1]/100)}</b></div>
+ <div><span>Test ${f2(t)}% x ${w[2]}</span><b>${f2(t*w[2]/100)}</b></div>`;
+ const bad=[["mo","mt"],["io","it"],["to","tt"]].some(p=>num(p[0])>num(p[1]));
+ $("msg").innerHTML=bad?'<span class="err">Obtained marks are higher than total marks. Please check your entries.</span>':
+   sum!==100?'<span class="err">Weights add up to '+sum+', not 100. Result is scaled to 100.</span>':
+   a>=85?"Strong aggregate. Check last year's closing merit for your program.":a>=70?"Competitive for many programs. Compare with closing merit.":"Consider several universities and programs to widen your options.";
+ $("fnote").textContent=`Formula: Matric ${w[0]}% + FSc ${w[1]}% + Test ${w[2]}%`;
+ table();
+}
+function table(){
+ const m=pct(num("mo"),num("mt")),i=pct(num("io"),num("it")),t=pct(num("to"),num("tt")),q=$("q").value.toLowerCase();
+ let rows=U.filter(u=>!u.hide&&(u.name+u.city+u.kind).toLowerCase().includes(q)).map(u=>({...u,score:agg(m,i,t,[u.m,u.i,u.t])}));
+ rows.sort((a,b)=>{const x=a[sortK],y=b[sortK];const c=typeof x==="number"?x-y:String(x).localeCompare(y);return sortAsc?c:-c});
+ $("tb").innerHTML=rows.length?rows.map(u=>`<tr data-id="${u.id}" class="${u.id===sel.value?"pick":""}" tabindex="0">
+ <td><b>${u.name}</b></td><td>${u.city}</td><td><span class="tag">${u.kind}</span></td><td>${u.m} / ${u.i} / ${u.t}</td>
+ <td><div class="sc">${f2(u.score)}</div><div class="bar"><b style="width:${u.score}%"></b></div></td></tr>`).join(""):
+ '<tr><td colspan="5">No university matches your search. Try a shorter name or a city.</td></tr>';
+}
+["mo","mt","io","it","to","tt","wm","wi","wt"].forEach(id=>$(id).addEventListener("input",()=>{
+ if(["wm","wi","wt"].includes(id)&&sel.value!=="custom"){/* keep selection, weights edited manually */}
+ render()}));
+sel.addEventListener("change",applyUni);
+$("q").addEventListener("input",table);
+$("tb").addEventListener("click",e=>{const r=e.target.closest("tr[data-id]");if(r){sel.value=r.dataset.id;applyUni();window.scrollTo({top:0,behavior:"smooth"})}});
+$("tb").addEventListener("keydown",e=>{if(e.key==="Enter"){const r=e.target.closest("tr[data-id]");if(r){sel.value=r.dataset.id;applyUni()}}});
+document.querySelectorAll("th[data-k]").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortAsc=sortK===k?!sortAsc:k!=="score";sortK=k;table()}));
+$("theme").addEventListener("click",()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0e1714";r.dataset.theme=d?"light":"dark";$("theme").textContent=d?"Dark mode":"Light mode"});
+$("yr").textContent=new Date().getFullYear();
+applyUni();
+</script>
+</body>
+</html>
